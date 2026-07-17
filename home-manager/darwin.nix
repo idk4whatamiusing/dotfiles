@@ -60,7 +60,6 @@
   homebrew = {
     enable = true;
     casks = [
-      "brave-browser"
       "miniconda"
     ];
     # default onActivation: does NOT uninstall unlisted apps (GarageBand etc. stay)
