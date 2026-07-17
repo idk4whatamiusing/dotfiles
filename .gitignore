@@ -1,0 +1,20 @@
+# Nix build output
+home-manager/result
+
+# node_modules (managed by npm, not dotfiles)
+coc/extensions/node_modules/
+
+# Vim coc plugin is its own git repo
+vim/pack/coc/start/coc.nvim
+
+# Tmux plugins are external git repos
+tmux/plugins/tpm
+tmux/plugins/tmux-resurrect
+tmux/plugins/tmux-continuum
+
+# zsh runtime data (not dotfiles)
+zsh/.zsh_history
+zsh/.zcompdump*
+
+# opencode CLI
+opencode/node_modules/

@@ -10,6 +10,7 @@
   # ---- Zsh ----
   programs.zsh = {
     enable = true;
+    dotDir = "/Users/x/.config/zsh";
     envExtra = ''
       export PATH="$HOME/.nix-profile/bin:$PATH"
       export EDITOR='vim'

@@ -1,0 +1,166 @@
+" Leader
+let mapleader = " "
+
+" Basics
+syntax on
+filetype plugin indent on
+set encoding=utf-8
+set nocompatible
+
+" Colors
+set termguicolors
+set background=dark
+colorscheme vague
+
+" Line numbers
+set number
+set relativenumber
+
+" Indentation (2 spaces)
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set autoindent
+set smartindent
+
+" Search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Splits
+set splitbelow
+set splitright
+
+" Mouse
+set mouse=a
+
+" Clipboard
+set clipboard=unnamedplus
+
+" Persistent undo
+set undodir=~/.config/vim/undodir
+set undofile
+set undolevels=1000
+set undoreload=10000
+
+" Backspace
+set backspace=indent,eol,start
+
+" Wildmenu
+set wildmenu
+set wildmode=list:longest,full
+
+" Scrolling
+set scrolloff=8
+set sidescrolloff=8
+
+" Display
+set showcmd
+set showmode
+set ruler
+set laststatus=2
+set noshowmode
+set signcolumn=yes
+
+" Folding
+set nofoldenable
+
+" Completion
+set completeopt=menuone,noinsert,noselect
+
+" Timeout
+set timeoutlen=300
+set ttimeoutlen=0
+
+" Netrw (file explorer)
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+
+" fzf
+set rtp+=/opt/homebrew/opt/fzf
+
+" Gleam filetype
+autocmd BufRead,BufNewFile *.gleam set filetype=gleam
+
+" coc.nvim
+let g:coc_config_home = '~/.config/coc'
+let g:coc_global_extensions = [
+  \ 'coc-pyright',
+  \ 'coc-tsserver',
+  \ 'coc-rust-analyzer',
+  \ 'coc-json',
+  \ ]
+
+" Coc completion
+set nobackup
+set nowritebackup
+set cmdheight=2
+set shortmess+=c
+set updatetime=300
+
+" Coc mappings
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ "\<Tab>"
+inoremap <expr><S-TAB>
+      \ coc#pum#visible() ? coc#pum#prev(1) :
+      \ "\<S-Tab>"
+inoremap <silent><expr> <CR>
+      \ coc#pum#visible() ? coc#pum#confirm() :
+      \ "\<C-g>u\<CR>"
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>rn <Plug>(coc-rename)
+nmap <silent> <leader>a <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>f <Plug>(coc-format)
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  endif
+endfunction
+
+" fzf mappings
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <leader>fg :Rg<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>h :History<CR>
+
+" Quick save
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>wq :wq<CR>
+
+" Buffer navigation
+nnoremap <silent> <C-n> :bnext<CR>
+nnoremap <silent> <C-b> :bprevious<CR>
+nnoremap <silent> <leader>bd :bdelete<CR>
+
+" Clear search highlight
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+
+" Window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Resize windows
+nnoremap <silent> <leader>= :vertical resize +5<CR>
+nnoremap <silent> <leader>- :vertical resize -5<CR>
+
+" Terminal
+tnoremap <Esc> <C-\><C-n>
+
+" Netrw toggle
+nnoremap <silent> <leader>e :Lex<CR>
