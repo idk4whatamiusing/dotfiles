@@ -21,7 +21,7 @@
       export ZCOMPDUMP="$HOME/.cache/zsh/zcompdump"
       export SHELL_SESSION_DIR="$HOME/.cache/zsh/sessions"
     '';
-    initExtra = ''
+    initContent = ''
       export ZSH="$HOME/.oh-my-zsh"
       ZSH_THEME="robbyrussell"
       plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
