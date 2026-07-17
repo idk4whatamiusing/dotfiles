@@ -11,15 +11,21 @@
   programs.zsh = {
     enable = true;
     dotDir = "/Users/x/.config/zsh";
+    completionInit = "autoload -Uz compinit && compinit -d \"$HOME/.cache/zsh/zcompdump\"";
     envExtra = ''
       export PATH="$HOME/.nix-profile/bin:$PATH"
       export EDITOR='vim'
       export PATH="$HOME/.opencode/bin:$PATH"
+
+      # Keep zsh runtime junk out of the dotfiles dir
+      export ZCOMPDUMP="$HOME/.cache/zsh/zcompdump"
+      export SHELL_SESSION_DIR="$HOME/.cache/zsh/sessions"
     '';
     initExtra = ''
       export ZSH="$HOME/.oh-my-zsh"
       ZSH_THEME="robbyrussell"
       plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+      export ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdump"
       source $ZSH/oh-my-zsh.sh
 
       eval "$(/opt/homebrew/bin/brew shellenv)"
