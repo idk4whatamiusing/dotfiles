@@ -62,7 +62,7 @@
     taps = [ "nikitabobko/tap" ];
     casks = [
       "miniconda"
-      "aerospace"
+      { name = "aerospace"; trusted = true; }
     ];
     # default onActivation: does NOT uninstall unlisted apps (GarageBand etc. stay)
   };
