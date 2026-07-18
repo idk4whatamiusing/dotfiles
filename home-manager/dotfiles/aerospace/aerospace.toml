@@ -1,27 +1,31 @@
 # AeroSpace configuration — managed by home-manager (symlinked to ~/.config/aerospace/aerospace.toml)
 # See https://nikitabobko.github.io/AeroSpace/ for full reference.
 
+config-version = 2
+
+# Start AeroSpace at login (no launchd agent needed)
 start-at-login = true
 
-# Use the native macOS menubar (aerospace doesn't replace it)
-# Workspaces are AeroSpace's own virtual spaces (no SIP required).
+# Don't replace the native macOS menubar.
 
-[gaps]
-inner-gap = "8"
-outer-gap = "8"
+# Gaps between windows and monitor edges (config-version = 2 syntax)
+gaps.inner.horizontal = 8
+gaps.inner.vertical   = 8
+gaps.outer.left       = 8
+gaps.outer.bottom     = 8
+gaps.outer.top        = 8
+gaps.outer.right      = 8
 
-# Layout
-# 'tiling' arranges windows automatically; 'floating' lets you free-move them.
-# New windows default to tiling.
+# Keep the listed workspaces alive even when empty
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-# Optional keybindings (tailing is automatic — these are just for manual control).
-# Uses 'alt' as the modifier; no conflict with tmux (₹) or Spotlight (Cmd+Space).
+# 'main' binding mode. Uses alt as modifier (no conflict with tmux ₹ or Spotlight Cmd+Space).
 [mode.main.binding]
-alt-h = "workspace prev"
-alt-l = "workspace next"
-alt-j = "focus down"
-alt-k = "focus up"
-alt-f = "layout tiling"
-alt-r = "layout floating"
-alt-enter = "fullscreen"
-alt-shift-q = "close"
+    alt-h         = 'workspace prev'
+    alt-l         = 'workspace next'
+    alt-j         = 'focus down'
+    alt-k         = 'focus up'
+    alt-f         = 'layout tiling'
+    alt-r         = 'layout floating'
+    alt-enter     = 'fullscreen'
+    alt-shift-q   = 'close'
