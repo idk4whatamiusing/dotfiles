@@ -90,4 +90,7 @@
       alias.st = "status";
     };
   };
+
+  # ---- aerospace window manager config ----
+  home.file.".config/aerospace/aerospace.toml".source = ./dotfiles/aerospace/aerospace.toml;
 }
