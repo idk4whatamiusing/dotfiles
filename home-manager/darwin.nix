@@ -63,6 +63,7 @@
     casks = [
       "miniconda"
       { name = "aerospace"; trusted = true; }
+      "chromium"
     ];
     # default onActivation: does NOT uninstall unlisted apps (GarageBand etc. stay)
   };
