@@ -21,10 +21,14 @@ persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 # 'main' binding mode. Uses alt as modifier (no conflict with tmux ₹ or Spotlight Cmd+Space).
 [mode.main.binding]
-    alt-h         = 'workspace prev'
-    alt-l         = 'workspace next'
+    # Directional focus (alt + hjkl)
+    alt-h         = 'focus left'
     alt-j         = 'focus down'
     alt-k         = 'focus up'
+    alt-l         = 'focus right'
+    alt-tab       = 'workspace-back-and-forth'
+
+    # Layout + window controls
     alt-f         = 'layout tiling'
     alt-r         = 'layout floating'
     alt-enter     = 'fullscreen'
