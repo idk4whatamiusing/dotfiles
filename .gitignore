@@ -17,6 +17,6 @@ zsh/.zsh_history
 zsh/.zcompdump*
 zsh/.zsh_sessions/
 
-# opencode CLI
-opencode/node_modules/
+# opencode config (managed by app, not dotfiles repo)
+opencode/
 result
