@@ -23,6 +23,10 @@ zsh/.zshenv
 zsh/.zprofile
 git/config
 
+# Generated config dirs
+aerospace/
+gh/
+
 # opencode config (managed by app, not dotfiles repo)
 opencode/
 result
