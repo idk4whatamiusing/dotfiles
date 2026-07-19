@@ -6,6 +6,7 @@ syntax on
 filetype plugin indent on
 set encoding=utf-8
 set nocompatible
+set noswapfile
 
 " Colors
 set termguicolors
