@@ -76,6 +76,7 @@
     gleam
     fnm
     opencode
+    gh
   ];
 
   # ---- Git ----
