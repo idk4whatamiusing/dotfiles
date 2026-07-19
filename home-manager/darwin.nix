@@ -174,6 +174,16 @@
     killall Finder 2>/dev/null || true
   '';
 
+  # Force stock Terminal default profile background to black
+  system.activationScripts.terminalBlackBg.text = ''
+    PLIST=~/Library/Preferences/com.apple.Terminal.plist
+    for ch in BackgroundColorR BackgroundColorG BackgroundColorB; do
+      /usr/libexec/PlistBuddy -c "Set :WindowSettings:Basic:$ch 0" "$PLIST" 2>/dev/null || true
+    done
+    defaults write com.apple.Terminal "Default Window Settings" -string "Basic"
+    defaults write com.apple.Terminal "Startup Window Settings" -string "Basic"
+  '';
+
   # ---- Apps via Homebrew casks ----
   homebrew = {
     enable = true;

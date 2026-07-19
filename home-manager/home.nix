@@ -19,6 +19,7 @@
     rust-analyzer
     gleam
     fnm
+    nodejs
     opencode
     gh
   ];
