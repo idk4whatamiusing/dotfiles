@@ -29,6 +29,10 @@
     NSAutomaticSpellingCorrectionEnabled = false;
     NSAutomaticDashSubstitutionEnabled = false;
     NSAutomaticQuoteSubstitutionEnabled = false;
+
+    # Sound — mute alert volume, disable volume change feedback
+    "com.apple.sound.beep.volume" = 0.0;
+    "com.apple.sound.beep.feedback" = 0;
   };
 
   # Settings not natively modeled go via CustomUserPreferences
@@ -150,6 +154,22 @@
     ShowDayOfWeek = true;
     ShowSeconds = false;
   };
+
+  # Control Center — show battery %, sound, and Bluetooth in menu bar
+  system.defaults.controlcenter = {
+    BatteryShowPercentage = true;
+    Sound = true;
+    Bluetooth = true;
+  };
+
+  # Disable downloaded-app quarantine warning
+  system.defaults.LaunchServices.LSQuarantine = false;
+
+  # Control macOS major updates manually (no auto-install)
+  system.defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
+
+  # Reduce motion (less animation = feels snappier)
+  system.defaults.universalaccess.reduceMotion = true;
 
   # Apply UI changes immediately
   system.activationScripts.applyUserDefaults.text = ''
