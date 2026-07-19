@@ -19,6 +19,16 @@
     "com.apple.springing.delay" = 0.5;
     "com.apple.trackpad.forceClick" = true;
     "com.apple.trackpad.scaling" = 0.875;
+
+    # Developer typing tweaks (vim-friendly)
+    ApplePressAndHoldEnabled = false;       # keys repeat when held
+    InitialKeyRepeat = 10;                  # fast repeat start
+    KeyRepeat = 1;                          # fast repeat rate
+    NSAutomaticCapitalizationEnabled = false;
+    NSAutomaticPeriodSubstitutionEnabled = false;
+    NSAutomaticSpellingCorrectionEnabled = false;
+    NSAutomaticDashSubstitutionEnabled = false;
+    NSAutomaticQuoteSubstitutionEnabled = false;
   };
 
   # Settings not natively modeled go via CustomUserPreferences
@@ -35,12 +45,15 @@
   # Dock
   system.defaults.dock = {
     autohide = true;
+    autohide-delay = 0.0;           # instant show
+    autohide-time-modifier = 0.0;   # instant animation
     magnification = true;
     largesize = 45;
     tilesize = 31;
     show-recents = false;
     mineffect = "genie";
     orientation = "bottom";
+    expose-animation-duration = 0.0;  # faster Mission Control
     wvous-bl-corner = 5;   # Mission Control
     wvous-br-corner = 14;  # Quick Note
   };
@@ -52,6 +65,12 @@
     ShowExternalHardDrivesOnDesktop = true;
     ShowRemovableMediaOnDesktop = true;
     ShowHardDrivesOnDesktop = false;
+    ShowPathbar = true;
+    AppleShowAllExtensions = true;
+    FXEnableExtensionChangeWarning = false;
+    _FXSortFoldersFirst = true;
+    _FXShowPosixPathInTitle = true;
+    NewWindowTarget = "Home";
   };
 
   # Trackpad (built-in; Bluetooth domain not set here)
@@ -99,6 +118,27 @@
     StandardHideWidgets = false;
     StageManagerHideWidgets = false;
     AppWindowGroupingBehavior = true; # All at once
+
+    # Disable macOS native tiling to avoid conflicts with AeroSpace
+    EnableTilingByEdgeDrag = false;
+    EnableTopTilingByEdgeDrag = false;
+    EnableTilingOptionAccelerator = false;
+  };
+
+  # Spaces — AeroSpace recommended: disable "Displays have separate Spaces"
+  system.defaults.spaces.spans-displays = true;
+
+  # Screenshots — no shadow, PNG format on Desktop
+  system.defaults.screencapture = {
+    location = "~/Desktop";
+    type = "png";
+    disable-shadow = true;
+  };
+
+  # Security — require password after sleep/screensaver
+  system.defaults.screensaver = {
+    askForPassword = true;
+    askForPasswordDelay = 5;
   };
 
   # Clock in menu bar
