@@ -40,4 +40,11 @@
 
   # ---- Git ----
   home.file.".config/git/config".source = ./dotfiles/git/config;
+
+  # ---- Coc ----
+  home.file.".config/coc/coc-settings.json".source = ./dotfiles/coc/coc-settings.json;
+  home.file.".config/coc/memos.json".source = ./dotfiles/coc/memos.json;
+
+  # ---- Nix ----
+  home.file.".config/nix/nix.conf".source = ./dotfiles/nix/nix.conf;
 }

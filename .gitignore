@@ -13,3 +13,8 @@ result
 /gh/
 /vim/
 /tmux/
+/nix/
+
+# Symlinked coc config files (managed by home-manager)
+coc/coc-settings.json
+coc/memos.json
