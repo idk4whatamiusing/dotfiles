@@ -44,6 +44,7 @@
   # ---- Coc ----
   home.file.".config/coc/coc-settings.json".source = ./dotfiles/coc/coc-settings.json;
   home.file.".config/coc/memos.json".source = ./dotfiles/coc/memos.json;
+  home.file.".config/coc/extensions/package.json".source = ./dotfiles/coc/extensions/package.json;
 
   # ---- Nix ----
   home.file.".config/nix/nix.conf".source = ./dotfiles/nix/nix.conf;
