@@ -17,15 +17,18 @@ git clone https://github.com/idk4whatamiusing/dotfiles.git ~/.config
 echo "=== 4. Remove temp nix.conf (the flake supplies its own) ==="
 rm -f ~/.config/nix/nix.conf
 
-echo "=== 5. Create ~/.zshenv pointer ==="
-echo 'export ZDOTDIR="$HOME/.config/zsh"' > ~/.zshenv
-
-echo "=== 6. Oh My Zsh ==="
+echo "=== 5. Oh My Zsh (before ZDOTDIR is set) ==="
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 2>/dev/null || true
+
+echo "=== 6. Create ~/.zshenv pointer ==="
+# Works before switch (silently skips missing .zshenv) and after switch (sources it)
+cat > ~/.zshenv << 'EOF'
+export ZDOTDIR="$HOME/.config/zsh"
+source "$ZDOTDIR/.zshenv" 2>/dev/null
+EOF
 
 echo "=== 7. Homebrew ==="
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 2>/dev/null || true
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 
 echo "=== 8. Build & activate nix system ==="
 cd ~/.config
