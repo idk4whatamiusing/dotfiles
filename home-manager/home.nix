@@ -75,6 +75,7 @@
     rust-analyzer
     gleam
     fnm
+    opencode
   ];
 
   # ---- Git ----
