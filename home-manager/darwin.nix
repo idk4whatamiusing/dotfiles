@@ -168,9 +168,6 @@
   # Control macOS major updates manually (no auto-install)
   system.defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
 
-  # Reduce motion (less animation = feels snappier)
-  system.defaults.universalaccess.reduceMotion = true;
-
   # Apply UI changes immediately
   system.activationScripts.applyUserDefaults.text = ''
     killall Dock 2>/dev/null || true
