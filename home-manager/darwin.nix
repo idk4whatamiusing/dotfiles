@@ -9,52 +9,113 @@
   # ---- Nix ----
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # ---- macOS settings (codified from current customizations) ----
-  # nix-darwin's system.defaults only models a subset of keys, so we apply the
-  # full set (exactly as currently configured) via an activation script.
-  system.activationScripts.applyUserDefaults = {
-    text = ''
-      # ---- Global (NSGlobalDomain) ----
-      defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
-      defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Maximize"
-      defaults write NSGlobalDomain AppleMiniaturizeOnDoubleClick -int 0
-      defaults write NSGlobalDomain com.apple.springing.enabled -bool true
-      defaults write NSGlobalDomain com.apple.springing.delay -float 0.5
-      defaults write NSGlobalDomain com.apple.trackpad.forceClick -bool true
-      defaults write NSGlobalDomain com.apple.trackpad.scaling -float 0.875
-      defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
+  # ---- macOS settings (declarative via system.defaults) ----
 
-      # ---- Dock ----
-      defaults write com.apple.dock autohide -bool true
-      defaults write com.apple.dock magnification -bool true
-      defaults write com.apple.dock largesize -int 45
-      defaults write com.apple.dock tilesize -int 31
-      defaults write com.apple.dock show-recents -bool false
-      defaults write com.apple.dock wvous-bl-corner -int 5
-      defaults write com.apple.dock wvous-br-corner -int 14
-
-      # ---- Finder ----
-      defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
-      defaults write com.apple.finder FXRemoveOldTrashItems -bool true
-      defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-      defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
-      defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
-
-      # ---- Trackpad ----
-      for domain in com.apple.driver.AppleBluetoothMultitouch.trackpad com.apple.AppleMultitouchTrackpad; do
-        defaults write "$domain" Clicking -bool true
-        defaults write "$domain" Dragging -bool true
-        defaults write "$domain" TrackpadRightClick -bool true
-        defaults write "$domain" FirstClickThreshold -int 2
-        defaults write "$domain" SecondClickThreshold -int 2
-        defaults write "$domain" ForceSuppressed -bool false
-      done
-
-      # Apply UI changes without full logout
-      killall Dock 2>/dev/null || true
-      killall Finder 2>/dev/null || true
-    '';
+  # Global / Appearance
+  system.defaults.NSGlobalDomain = {
+    AppleInterfaceStyle = "Dark";
+    NSTableViewDefaultSizeMode = 1;
+    "com.apple.springing.enabled" = true;
+    "com.apple.springing.delay" = 0.5;
+    "com.apple.trackpad.forceClick" = true;
+    "com.apple.trackpad.scaling" = 0.875;
   };
+
+  # Settings not natively modeled go via CustomUserPreferences
+  system.defaults.CustomUserPreferences = {
+    "NSGlobalDomain" = {
+      AppleActionOnDoubleClick = "Maximize";
+      AppleMiniaturizeOnDoubleClick = 0;
+    };
+    "com.apple.AppleMultitouchTrackpad" = {
+      TrackpadFiveFingerPinchGesture = 2;  # Launchpad
+    };
+  };
+
+  # Dock
+  system.defaults.dock = {
+    autohide = true;
+    magnification = true;
+    largesize = 45;
+    tilesize = 31;
+    show-recents = false;
+    mineffect = "genie";
+    orientation = "bottom";
+    wvous-bl-corner = 5;   # Mission Control
+    wvous-br-corner = 14;  # Quick Note
+  };
+
+  # Finder
+  system.defaults.finder = {
+    FXPreferredViewStyle = "Nlsv";  # List view
+    FXRemoveOldTrashItems = true;
+    ShowExternalHardDrivesOnDesktop = true;
+    ShowRemovableMediaOnDesktop = true;
+    ShowHardDrivesOnDesktop = false;
+  };
+
+  # Trackpad (built-in; Bluetooth domain not set here)
+  system.defaults.trackpad = {
+    # Tap + drag
+    Clicking = true;           # tap to click
+    Dragging = true;
+    TrackpadRightClick = true; # two-finger right click
+    TrackpadThreeFingerDrag = false;
+
+    # Click firmness
+    FirstClickThreshold = 2;   # firm
+    SecondClickThreshold = 2;  # firm
+    ForceSuppressed = false;   # force click on
+    ActuateDetents = true;     # haptic feedback
+
+    # Gestures – vertical swipe
+    TrackpadThreeFingerVertSwipeGesture = 2;  # Mission Control
+    TrackpadFourFingerVertSwipeGesture = 2;   # Mission Control
+
+    # Gestures – horizontal / pinch
+    TrackpadThreeFingerHorizSwipeGesture = 0;
+    TrackpadFourFingerHorizSwipeGesture = 2;  # swipe between apps
+    TrackpadFourFingerPinchGesture = 2;       # Launchpad / Desktop
+
+    # Other
+    TrackpadThreeFingerTapGesture = 0;
+    TrackpadTwoFingerDoubleTapGesture = true; # smart zoom
+    TrackpadTwoFingerFromRightEdgeSwipeGesture = 3; # Notification Center
+    TrackpadMomentumScroll = true;
+    TrackpadPinch = true;
+    TrackpadRotate = true;
+    DragLock = false;
+    TrackpadCornerSecondaryClick = 0;
+  };
+
+  # Stage Manager (Window Manager)
+  system.defaults.WindowManager = {
+    GloballyEnabled = true;   # Stage Manager on
+    AutoHide = true;
+    EnableStandardClickToShowDesktop = false;
+    HideDesktop = true;
+    EnableTiledWindowMargins = true;
+    StandardHideDesktopIcons = false;
+    StandardHideWidgets = false;
+    StageManagerHideWidgets = false;
+    AppWindowGroupingBehavior = true; # All at once
+  };
+
+  # Clock in menu bar
+  system.defaults.menuExtraClock = {
+    IsAnalog = false;
+    Show24Hour = true;
+    ShowAMPM = false;
+    ShowDate = 0;          # never
+    ShowDayOfWeek = true;
+    ShowSeconds = false;
+  };
+
+  # Apply UI changes immediately
+  system.activationScripts.applyUserDefaults.text = ''
+    killall Dock 2>/dev/null || true
+    killall Finder 2>/dev/null || true
+  '';
 
   # ---- Apps via Homebrew casks ----
   homebrew = {
