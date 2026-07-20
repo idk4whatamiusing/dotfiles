@@ -71,4 +71,11 @@
       npx bmad-method install --non-interactive 2>/dev/null || echo "BMAD install skipped — run manually: npx bmad-method install"
     fi
   '';
+
+  home.activation.ensureOpenspecPlugin = lib.mkAfter ''
+    if [ ! -d "${config.home.homeDirectory}/.config/opencode/node_modules/opencode-plugin-openspec" ]; then
+      echo "Reinstalling opencode-plugin-openspec..."
+      cd "${config.home.homeDirectory}/.config/opencode" && npm install opencode-plugin-openspec 2>/dev/null || true
+    fi
+  '';
 }
