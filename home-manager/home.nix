@@ -20,6 +20,9 @@
     gleam
     fnm
     nodejs
+    watchman
+    cocoapods
+    jdk17
     opencode
     gh
   ];
@@ -49,4 +52,7 @@
 
   # ---- Nix ----
   home.file.".config/nix/nix.conf".source = ./dotfiles/nix/nix.conf;
+
+  # ---- OpenCode ----
+  home.file.".config/opencode/opencode.json".source = ./dotfiles/opencode/opencode.json;
 }

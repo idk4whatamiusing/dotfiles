@@ -5,7 +5,6 @@ home-manager/result
 coc/extensions/node_modules/
 
 # Runtime / generated dirs (managed outside git)
-opencode/
 result
 /zsh/
 /git/
