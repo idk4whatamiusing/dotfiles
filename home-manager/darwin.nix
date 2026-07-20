@@ -192,11 +192,10 @@
   # ---- Apps via Homebrew casks ----
   homebrew = {
     enable = true;
-    taps = [ "nikitabobko/tap" ];
+    taps = [ ];
     casks = [
       "miniconda"
       "android-studio"
-      { name = "aerospace"; trusted = true; }
     ];
     # default onActivation: does NOT uninstall unlisted apps (GarageBand etc. stay)
   };
