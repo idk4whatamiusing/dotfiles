@@ -174,6 +174,11 @@
     killall Finder 2>/dev/null || true
   '';
 
+  # Never sleep from inactivity (lid close still sleeps)
+  system.activationScripts.preventIdleSleep.text = ''
+    pmset -a sleep 0 displaysleep 0 disksleep 0
+  '';
+
   # Force stock Terminal default profile background to black
   system.activationScripts.terminalBlackBg.text = ''
     PLIST=~/Library/Preferences/com.apple.Terminal.plist
@@ -190,6 +195,7 @@
     taps = [ "nikitabobko/tap" ];
     casks = [
       "miniconda"
+      "android-studio"
       { name = "aerospace"; trusted = true; }
     ];
     # default onActivation: does NOT uninstall unlisted apps (GarageBand etc. stay)
