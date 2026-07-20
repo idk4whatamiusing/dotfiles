@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.username = "x";
@@ -24,6 +24,7 @@
     cocoapods
     jdk17
     opencode
+    openspec
     gh
   ];
 
@@ -55,4 +56,19 @@
 
   # ---- OpenCode ----
   home.file.".config/opencode/opencode.json".source = ./dotfiles/opencode/opencode.json;
+
+  # ---- One-time installers (GSD + BMAD) ----
+  home.activation.installGSD = lib.mkAfter ''
+    if ! command -v gsd-help &>/dev/null && [ ! -f "${config.home.homeDirectory}/.config/opencode/commands/gsd-help.md" ]; then
+      echo "Installing GSD (Get Shit Done) for OpenCode..."
+      npx get-shit-done-cc --opencode --global 2>/dev/null || echo "GSD install skipped — run manually: npx get-shit-done-cc --opencode --global"
+    fi
+  '';
+
+  home.activation.installBMAD = lib.mkAfter ''
+    if [ ! -d "${config.home.homeDirectory}/.agents/skills/bmad-help" ]; then
+      echo "Installing BMAD Method for OpenCode..."
+      npx bmad-method install --non-interactive 2>/dev/null || echo "BMAD install skipped — run manually: npx bmad-method install"
+    fi
+  '';
 }
