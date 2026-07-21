@@ -38,6 +38,8 @@ export FZF_DEFAULT_OPTS="--color=fg:#cdcdcd --color=bg:#141415 --color=hl:#f3be7
 
 export PATH="$HOME/.local/bin:$PATH"
 
+. "$HOME/.cargo/env"
+
 PROMPT='%{%F{#c48282}%}%n%{%f%}@%{%F{#6e94b2}%}%m%{%f%} %{%F{#e8b589}%}%~%{%f%} %{%F{#7fa563}%}$(git_prompt_info)%{%f%} %# '
 
 export PATH="$HOME/.nix-profile/bin:$PATH"

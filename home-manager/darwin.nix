@@ -189,14 +189,7 @@
     defaults write com.apple.Terminal "Startup Window Settings" -string "Basic"
   '';
 
-  # ---- Apps via Homebrew casks ----
-  homebrew = {
-    enable = true;
-    taps = [ ];
-    casks = [
-      "miniconda"
-      "android-studio"
-    ];
-    # default onActivation: does NOT uninstall unlisted apps (GarageBand etc. stay)
-  };
+  # ---- Apps ----
+  # All managed via Homebrew (Brewfile in dotfiles/homebrew/Brewfile)
+  # `brew bundle` runs automatically on every home-manager switch
 }

@@ -7,30 +7,6 @@
 
   programs.home-manager.enable = true;
 
-  # ---- Packages ----
-  home.packages = with pkgs; [
-    vim
-    tmux
-    ripgrep
-    fzf
-    htop
-    wget
-    git
-    rust-analyzer
-    gleam
-    fnm
-    nodejs
-    watchman
-    cocoapods
-    jdk17
-    opencode
-    openspec
-    gh
-  ];
-
-  # ---- aerospace window manager config ----
-  home.file.".config/aerospace/aerospace.toml".source = ./dotfiles/aerospace/aerospace.toml;
-
   # ---- Vim ----
   home.file.".config/vim/vimrc".source = ./dotfiles/vim/vimrc;
   home.file.".config/vim/colors/vague.vim".source = ./dotfiles/vim/colors/vague.vim;
@@ -39,6 +15,11 @@
   home.file.".config/tmux/tmux.conf".source = ./dotfiles/tmux/tmux.conf;
 
   # ---- Zsh ----
+  # ~/.zshenv must exist and set ZDOTDIR so zsh finds the rest
+  home.file.".zshenv" = {
+    text = ''export ZDOTDIR="$HOME/.config/zsh"'';
+    force = true;
+  };
   home.file.".config/zsh/.zshenv".source = ./dotfiles/zsh/.zshenv;
   home.file.".config/zsh/.zprofile".source = ./dotfiles/zsh/.zprofile;
   home.file.".config/zsh/.zshrc".source = ./dotfiles/zsh/.zshrc;
@@ -56,6 +37,18 @@
 
   # ---- OpenCode ----
   home.file.".config/opencode/opencode.json".source = ./dotfiles/opencode/opencode.json;
+
+  # ---- Homebrew ----
+  home.file.".config/homebrew/Brewfile" = {
+    source = ./dotfiles/homebrew/Brewfile;
+    force = true;
+  };
+
+  # ---- Homebrew Bundle ----
+  home.activation.brewBundle = lib.mkAfter ''
+    echo "Running brew bundle..."
+    /opt/homebrew/bin/brew bundle --file="${config.home.homeDirectory}/.config/homebrew/Brewfile" --no-upgrade --quiet || true
+  '';
 
   # ---- One-time installers (GSD + BMAD) ----
   home.activation.installGSD = lib.mkAfter ''

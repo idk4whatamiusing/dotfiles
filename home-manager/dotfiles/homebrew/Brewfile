@@ -1,0 +1,33 @@
+# ============================================================
+# Brewfile — single source of truth for all Homebrew packages
+# Managed by Nix Home Manager (brew bundle runs on switch)
+# ============================================================
+
+# ---- Taps ----
+# tap "homebrew/cask-fonts"
+
+# ---- CLI formulae (replaces Nix home.packages) ----
+brew "vim"
+brew "tmux"
+brew "ripgrep"
+brew "fzf"
+brew "htop"
+brew "wget"
+brew "git"
+brew "rust-analyzer"
+brew "gleam"
+brew "fnm"
+brew "node"
+brew "watchman"
+brew "cocoapods"
+brew "openjdk@17"
+brew "opencode"
+brew "openspec"
+brew "gh"
+
+# ---- GUI casks ----
+cask "aerospace"
+cask "android-studio"
+cask "brave-browser"
+cask "helium-browser"
+cask "miniconda"
