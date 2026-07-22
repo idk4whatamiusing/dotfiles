@@ -1,8 +1,3 @@
-typeset -U path cdpath fpath manpath
-for profile in ${(z)NIX_PROFILES}; do
-  fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
-done
-
 autoload -Uz compinit && compinit -d "$HOME/.cache/zsh/zcompdump"
 
 HISTFILE="$HOME/.config/zsh/.zsh_history"
@@ -42,4 +37,3 @@ export PATH="$HOME/.local/bin:$PATH"
 
 PROMPT='%{%F{#c48282}%}%n%{%f%}@%{%F{#6e94b2}%}%m%{%f%} %{%F{#e8b589}%}%~%{%f%} %{%F{#7fa563}%}$(git_prompt_info)%{%f%} %# '
 
-export PATH="$HOME/.nix-profile/bin:$PATH"
