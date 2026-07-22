@@ -46,9 +46,20 @@ fi
 echo "=== 9. GitHub CLI auth ==="
 gh auth login 2>/dev/null || echo "Run 'gh auth login' manually"
 
-echo "=== 10. OpenCode plugins ==="
+echo "=== 10. BMAD Method (global) ==="
+npx bmad-method install --yes --directory ~/ --tools opencode 2>/dev/null || echo "Run 'npx bmad-method install' manually"
+
+echo "=== 11. Ponytail plugin ==="
 cd ~/.config/opencode
-npm install opencode-plugin-openspec 2>/dev/null || true
+if [ ! -d "node_modules/@dietrichgebert/ponytail" ]; then
+  npm install "github:DietrichGebert/ponytail#14a0d79" 2>/dev/null || true
+fi
+
+echo "=== 12. Matt Pocock Skills ==="
+npx skills@latest add mattpocock/skills --yes --global 2>/dev/null || echo "Run 'npx skills@latest add mattpocock/skills' manually"
 
 echo ""
-echo "Done! Restart Terminal for the new zsh config to take effect."
+echo "=== Post-install ==="
+echo "  - Run '/setup-matt-pocock-skills' in your agent to configure issue tracker"
+echo "  - Restart Terminal for the new zsh config to take effect"
+echo "Done!"
