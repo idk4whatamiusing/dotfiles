@@ -4,8 +4,8 @@
   "mcp": {
     "21st-dev": {
       "type": "local",
-      "command": "npx",
-      "args": ["-y", "@21st-dev/magic@latest"]
+      "command": ["npx", "-y", "@21st-dev/magic@latest"],
+      "enabled": true
     }
   }
 }
