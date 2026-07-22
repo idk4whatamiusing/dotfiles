@@ -17,7 +17,6 @@ brew "watchman"
 brew "cocoapods"
 brew "openjdk@17"
 brew "opencode"
-brew "openspec"
 brew "gh"
 
 # ---- GUI casks ----
