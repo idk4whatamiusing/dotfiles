@@ -1,4 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["./node_modules/@dietrichgebert/ponytail/.opencode/plugins/ponytail.mjs"]
+  "plugin": ["./node_modules/@dietrichgebert/ponytail/.opencode/plugins/ponytail.mjs"],
+  "mcp": {
+    "21st-dev": {
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "@21st-dev/magic@latest"]
+    }
+  }
 }
