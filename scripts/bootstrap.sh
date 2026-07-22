@@ -15,10 +15,10 @@ else
 fi
 
 echo "=== 3. Clone dotfiles ==="
-if [ ! -d ~/dotfiles ]; then
-  git clone https://github.com/idk4whatamiusing/dotfiles.git ~/dotfiles
+TARGET="${XDG_CONFIG_HOME:-$HOME/.config}"
+if [ ! -d "$TARGET/.git" ]; then
+  git clone https://github.com/idk4whatamiusing/dotfiles.git "$TARGET"
 fi
-cd ~/dotfiles
 
 echo "=== 4. Create ~/.zshenv (ZDOTDIR pointer) ==="
 cat > ~/.zshenv << 'EOF'
@@ -27,7 +27,7 @@ source "$ZDOTDIR/.zshenv"
 EOF
 
 echo "=== 5. Symlink configs ==="
-DOTFILES=~/dotfiles/home-manager/dotfiles
+DOTFILES="${XDG_CONFIG_HOME:-$HOME/.config}/home-manager/dotfiles"
 
 mkdir -p ~/.config/zsh ~/.config/git ~/.config/tmux ~/.config/vim/colors ~/.config/coc ~/.config/aerospace ~/.config/homebrew ~/.config/opencode
 
@@ -58,8 +58,8 @@ eval "$(fnm env --use-on-cd)"
 fnm install 24 2>/dev/null || true
 
 echo "=== 9. macOS defaults ==="
-if [ -f ~/dotfiles/scripts/.macos ]; then
-  bash ~/dotfiles/scripts/.macos
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/scripts/.macos" ]; then
+  bash "${XDG_CONFIG_HOME:-$HOME/.config}/scripts/.macos"
 fi
 
 echo "=== 10. GitHub CLI auth ==="
