@@ -3,6 +3,7 @@ coc/extensions/node_modules/
 
 # Runtime / generated dirs
 result
+zsh/.zsh_history
 
 # Runtime coc files
 coc/extensions/package-lock.json
