@@ -7,15 +7,8 @@ result
 # Runtime coc files
 coc/extensions/package-lock.json
 
-# Local machine symlink targets (source is in home-manager/dotfiles/)
-aerospace/
-coc/
-git/
-homebrew/
-tmux/
-vim/
-zsh/
-
 # Non-dotfiles dirs that live in ~/.config
 mimocode/
-opencode/
+opencode/node_modules/
+opencode/package.json
+opencode/package-lock.json

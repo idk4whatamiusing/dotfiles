@@ -1,7 +1,6 @@
-# Not tracked by Nix
+# Not tracked
 
-These settings and apps cannot be managed declaratively by Nix/nix-darwin/home-manager.
-They must be set up manually (or are automatically configured on first use).
+These settings and apps must be set up manually (or are automatically configured on first use).
 
 ## macOS protected / TCC-controlled domains
 - Reduce motion / transparency (com.apple.universalaccess — write protected on macOS 26+)
@@ -19,17 +18,12 @@ They must be set up manually (or are automatically configured on first use).
 - Login items (user-level)
 - Passwords / passkeys
 
-## Apps installed manually (not in nixpkgs or Homebrew)
+## Apps installed manually (not in Homebrew)
 - **Google Chrome** — download from https://www.google.com/chrome/
 - Any other `.dmg`-installed apps (Discord, Figma, etc.)
 
-## One-time GUI grants
-- **AeroSpace Accessibility permission** — System Settings → Privacy → Accessibility
-- **AeroSpace automation access** — may be prompted on first launch
-
-## Bootstrap steps (not reproducible via rebuild)
-- Installing Nix itself (bootstrap script handles this)
-- Cloning this dotfiles repo
+## Bootstrap steps
+- Cloning this dotfiles repo to `~/.config`
 - Creating `~/.zshenv` pointer
 - Installing Oh My Zsh
 - Installing Homebrew
